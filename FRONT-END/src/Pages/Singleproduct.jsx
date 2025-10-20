@@ -41,7 +41,8 @@ const Singleproduct = () => {
         setProduct(currentProduct)
         // Show other products as recommendations (exclude current product)
         setRecommendations(products.filter(p => p._id !== id).slice(0, 2))
-      } catch (e) {
+      } catch (_err) {
+        void _err
         setError('Failed to load product')
       } finally {
         setLoading(false)
@@ -167,8 +168,8 @@ const Singleproduct = () => {
 
   return (
     <>
-      {/* Optional loader element */}
-      <div id="site-loader" className="site-loader">
+      {/* Optional loader element (hidden by default) */}
+      <div id="site-loader" className="site-loader hide">
         <div className="spinner"></div>
       </div>
 
