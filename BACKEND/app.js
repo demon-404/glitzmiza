@@ -1,27 +1,35 @@
-const express = require('express')
-const cors=require('cors')
-const connet = require('./Config/server')
-const adminRouter = require('./Routes/AdminRouter')
-// Use simple router for development (no Razorpay keys required)
-const razorpayRouter = require('./Routes/RazorpayRouterSimple')
-require('dotenv').config()
+const express = require('express');
+const cors = require('cors');
+const connect = require('./Config/server'); // fixed typo: 'connet' → 'connect'
+const adminRouter = require('./Routes/AdminRouter');
+const razorpayRouter = require('./Routes/RazorpayRouterSimple');
+require('dotenv').config();
 
-const app=express()
-app.use(express.json({ limit: '10mb' }))
-app.use(cors())
+const app = express();
 
-// Test route
+// ✅ Middlewares
+app.use(express.json({ limit: '10mb' }));
+app.use(cors());
+
+// ✅ Test route
 app.get('/test', (req, res) => {
-  res.json({ message: 'Server is running!', timestamp: new Date() })
-})
+  res.json({ message: 'Server is running!', timestamp: new Date() });
+});
 
-// mount routers
-app.use('/', adminRouter)
-app.use('/', razorpayRouter)
+// ✅ Mount routers
+app.use('/', adminRouter);
+app.use('/', razorpayRouter);
 
-const PORT = process.env.PORT || process.env.port || 5010
+// ✅ Ensure PORT works correctly in all environments
+const PORT = process.env.PORT || 5010;
 
-app.listen(PORT, () => {
-    connet()
-    console.log(`server running at ${PORT}`)
-})
+// ✅ Connect to MongoDB before starting server
+connect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('❌ Failed to connect to MongoDB:', err);
+  });
