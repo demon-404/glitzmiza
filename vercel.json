@@ -2,11 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "FRONT-END/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "FRONT-END/dist"
-      }
+      "src": "FRONT-END/index.html",
+      "use": "@vercel/static"
     },
     {
       "src": "BACKEND/app.js",
@@ -20,7 +17,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "FRONT-END/dist/$1"
+      "dest": "FRONT-END/$1"
     }
   ]
 }
