@@ -6,13 +6,14 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import logo from "../assets/logo.png"
 import leaves from "../assets/leaves.png"
+import apiBase from '../utils/apiBase'
 
 function Productpage() {
   const navigate = useNavigate()
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'
+  
 
   useEffect(() => {
     const load = async () => {

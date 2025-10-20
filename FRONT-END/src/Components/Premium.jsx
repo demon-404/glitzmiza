@@ -23,7 +23,7 @@ const Premium = () => {
             {/* Text content */}
             <div className="contain">
               <div className="lives">
-                <img src="./Assets/golden-lives3.png" alt="" />
+                <img src="../assets/golden-lives3.png" alt="" />
               </div>
               <div className="contain-dtl">
                 <h3>Glitzmia Cream</h3>

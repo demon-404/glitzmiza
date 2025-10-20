@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../Context/CartContext';
 import { testRazorpayUrl, validateRazorpayUrl } from '../utils/razorpayTest';
 import { testBackendConnection } from '../utils/backendTest';
+import apiBase from '../utils/apiBase'
 import Navbarsimple from '../Components/Navbarsimple';
 import Footer from '../Components/Footer';
 import Subscribe from '../Components/Subscribe';
@@ -67,8 +68,8 @@ const Cart = () => {
         quantity: item.quantity
       }));
       
-      // Create order via backend API
-      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010';
+  // Create order via backend API
+  // apiBase is imported from utils and defaults to the deployed backend
       
       console.log('Creating order with:', {
         items: orderItems,
@@ -236,7 +237,7 @@ Or contact us for other payment methods.
                   <span style={{ color: '#16a34a' }}> ✅ Connected</span>
                 )}
                 <br />
-                <small>API Base: {import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}</small>
+                <small>API Base: {apiBase}</small>
               </div>
             )}
           </div>
@@ -247,7 +248,7 @@ Or contact us for other payment methods.
                 <div key={item.id} className="cart-item">
                   <div className="item-image">
                     <img 
-                      src={item.imageUrl || `/api/products/${item.id}/image`} 
+                      src={item.imageUrl || `${apiBase}/admin/products/${item.id}/image`} 
                       alt={item.name}
                       onError={(e) => {
                         e.target.src = '/placeholder-product.jpg';

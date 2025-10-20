@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import apiBase from '../utils/apiBase'
 
 const Admin = () => {
   const [status, setStatus] = useState('Checking backend...')
@@ -12,7 +13,7 @@ const Admin = () => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState('')
   const [imageBase64, setImageBase64] = useState('')
   const [imageContentType, setImageContentType] = useState('')
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'
+  // use centralized apiBase from utils
 
   useEffect(() => {
     fetch(`${apiBase}/admin/health`)

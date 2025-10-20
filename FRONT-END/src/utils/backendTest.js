@@ -1,6 +1,7 @@
 // Test backend connectivity and Razorpay routes
+import apiBase from './apiBase'
+
 export const testBackendConnection = async () => {
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010';
   
   try {
     // Test basic server connection
@@ -36,7 +37,6 @@ export const testBackendConnection = async () => {
 
 // Test order creation with dummy data
 export const testOrderCreation = async () => {
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010';
   
   const testOrder = {
     items: [

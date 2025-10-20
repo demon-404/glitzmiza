@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import apiBase from '../utils/apiBase'
 
 const Card = () => {
   const navigate = useNavigate()
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'
 
   useEffect(() => {
     const load = async () => {
@@ -17,8 +17,8 @@ const Card = () => {
         if (!res.ok) throw new Error('Failed to load products')
         const data = await res.json()
         setProducts(data)
-      } catch (e) {
-        setError('Failed to load products')
+  } catch {
+    setError('Failed to load products')
       } finally {
         setLoading(false)
       }

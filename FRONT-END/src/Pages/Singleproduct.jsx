@@ -12,6 +12,7 @@ import cartIcon from "../assets/cart.png";
 import Footer from "../Components/Footer";
 import Subscribe from "../Components/Subscribe";
 import Offer from "../Components/Offer";
+import apiBase from '../utils/apiBase'
 
 const Singleproduct = () => {
   const { id } = useParams()
@@ -22,7 +23,7 @@ const Singleproduct = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [addingToCart, setAddingToCart] = useState(false)
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'
+  
 
   useEffect(() => {
     const loadProduct = async () => {
