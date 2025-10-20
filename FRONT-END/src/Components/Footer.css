@@ -1,0 +1,295 @@
+/* Footer Styles */
+.footer {
+  background: linear-gradient(135deg, #111633 0%, #834256 100%);
+  color: white;
+  padding: 60px 20px 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.foot-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.f1 img {
+  width: 120px;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.f2 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.f2 p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.f2 i {
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.f2 i:hover {
+  color: #f59e0b;
+  transform: translateY(-2px);
+}
+
+.foot-2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.explore {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.ex-1 h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #f59e0b;
+}
+
+.ex-1 a {
+  display: block;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.ex-1 a:hover {
+  color: #f59e0b;
+  transform: translateX(5px);
+}
+
+.ex-1 p {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.ex-1 p i {
+  color: #f59e0b;
+  font-size: 1rem;
+}
+
+.news h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #f59e0b;
+}
+
+.n2 {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.anti {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.anti:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+.june-1 {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.june-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.june-2 p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 5px 0;
+}
+
+.june-2 h6 {
+  font-size: 0.9rem;
+  color: white;
+  margin: 0;
+  font-weight: 500;
+}
+
+.last {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.last p {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.foot-leaves {
+  position: absolute;
+  right: -100px;
+  bottom: -50px;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+.foot-leaves img {
+  width: 200px;
+  height: auto;
+  transform: rotate(-15deg);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .foot-2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .explore {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .foot-leaves {
+    right: -50px;
+    bottom: -30px;
+  }
+  
+  .foot-leaves img {
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 15px 20px;
+  }
+  
+  .foot-1 {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .explore {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .foot-2 {
+    gap: 30px;
+  }
+  
+  .n2 {
+    gap: 12px;
+  }
+  
+  .anti {
+    padding: 12px;
+  }
+  
+  .june-1 {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .foot-leaves {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 10px 15px;
+  }
+  
+  .f1 img {
+    width: 100px;
+  }
+  
+  .f2 {
+    gap: 15px;
+  }
+  
+  .f2 i {
+    font-size: 1.3rem;
+  }
+  
+  .ex-1 h1,
+  .news h1 {
+    font-size: 1.3rem;
+  }
+  
+  .anti {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .june-1 {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .june-2 h6 {
+    font-size: 0.8rem;
+  }
+  
+  .june-2 p {
+    font-size: 0.75rem;
+  }
+}
