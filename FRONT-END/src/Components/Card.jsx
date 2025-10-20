@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import apiBase from '../utils/apiBase'
+import apiFetch from '../utils/apiFetch'
 
 const Card = () => {
   const navigate = useNavigate()
@@ -13,7 +14,7 @@ const Card = () => {
       try {
         setLoading(true)
         setError('')
-        const res = await fetch(`${apiBase}/admin/products`)
+          const res = await apiFetch('/admin/products')
         if (!res.ok) throw new Error('Failed to load products')
         const data = await res.json()
         setProducts(data)

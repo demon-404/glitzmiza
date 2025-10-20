@@ -13,6 +13,7 @@ import Footer from "../Components/Footer";
 import Subscribe from "../Components/Subscribe";
 import Offer from "../Components/Offer";
 import apiBase from '../utils/apiBase'
+import apiFetch from '../utils/apiFetch'
 import logo from '../assets/logo.png'
 
 const Singleproduct = () => {
@@ -31,9 +32,9 @@ const Singleproduct = () => {
       try {
         setLoading(true)
         setError('')
-        const res = await fetch(`${apiBase}/admin/products`)
-        if (!res.ok) throw new Error('Failed to load products')
-        const products = await res.json()
+  const res = await apiFetch('/admin/products')
+  if (!res.ok) throw new Error('Failed to load products')
+  const products = await res.json()
         const currentProduct = products.find(p => p._id === id)
         if (!currentProduct) {
           setError('Product not found')
@@ -42,8 +43,8 @@ const Singleproduct = () => {
         setProduct(currentProduct)
         // Show other products as recommendations (exclude current product)
         setRecommendations(products.filter(p => p._id !== id).slice(0, 2))
-      } catch (_err) {
-        void _err
+      } catch (err) {
+        void err
         setError('Failed to load product')
       } finally {
         setLoading(false)

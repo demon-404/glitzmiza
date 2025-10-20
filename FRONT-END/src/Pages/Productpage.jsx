@@ -7,6 +7,7 @@ import Footer from '../Components/Footer';
 import logo from "../assets/logo.png"
 import leaves from "../assets/leaves.png"
 import apiBase from '../utils/apiBase'
+import apiFetch from '../utils/apiFetch'
 
 function Productpage() {
   const navigate = useNavigate()
@@ -20,9 +21,9 @@ function Productpage() {
       try {
         setLoading(true)
         setError('')
-        const res = await fetch(`${apiBase}/admin/products`)
-        if (!res.ok) throw new Error('Failed to load products')
-        const data = await res.json()
+  const res = await apiFetch('/admin/products')
+  if (!res.ok) throw new Error('Failed to load products')
+  const data = await res.json()
         setProducts(data)
       } catch (e) {
         setError('Failed to load products')

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../Context/CartContext';
-import { testRazorpayUrl, validateRazorpayUrl } from '../utils/razorpayTest';
+// imported and used for dev testing; keep file available if needed
 import { testBackendConnection } from '../utils/backendTest';
 import apiBase from '../utils/apiBase'
+import apiFetch from '../utils/apiFetch'
 import Navbarsimple from '../Components/Navbarsimple';
 import Footer from '../Components/Footer';
 import Subscribe from '../Components/Subscribe';
@@ -77,7 +78,7 @@ const Cart = () => {
         apiBase: apiBase
       });
       
-      const response = await fetch(`${apiBase}/api/razorpay/create-order`, {
+      const response = await apiFetch('/api/razorpay/create-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +116,7 @@ const Cart = () => {
             handler: async function (response) {
               // Verify payment
               try {
-                const verifyResponse = await fetch(`${apiBase}/api/razorpay/verify-payment`, {
+                const verifyResponse = await apiFetch('/api/razorpay/verify-payment', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',

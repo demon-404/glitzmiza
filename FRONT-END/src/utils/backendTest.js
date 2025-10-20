@@ -1,22 +1,23 @@
 // Test backend connectivity and Razorpay routes
 import apiBase from './apiBase'
+import apiFetch from './apiFetch'
 
 export const testBackendConnection = async () => {
   
   try {
     // Test basic server connection
-    const testResponse = await fetch(`${apiBase}/test`);
-    const testData = await testResponse.json();
+  const testResponse = await apiFetch('/test')
+  const testData = await testResponse.json();
     console.log('✅ Server connection test:', testData);
     
     // Test Razorpay health endpoint
-    const healthResponse = await fetch(`${apiBase}/api/razorpay/health`);
-    const healthData = await healthResponse.json();
+  const healthResponse = await apiFetch('/api/razorpay/health')
+  const healthData = await healthResponse.json();
     console.log('✅ Razorpay routes test:', healthData);
     
     // Test Razorpay key endpoint
-    const keyResponse = await fetch(`${apiBase}/api/razorpay/key`);
-    const keyData = await keyResponse.json();
+  const keyResponse = await apiFetch('/api/razorpay/key')
+  const keyData = await keyResponse.json();
     console.log('✅ Razorpay key test:', keyData);
     
     return {
@@ -59,7 +60,7 @@ export const testOrderCreation = async () => {
   };
   
   try {
-    const response = await fetch(`${apiBase}/api/razorpay/create-order`, {
+    const response = await apiFetch('/api/razorpay/create-order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

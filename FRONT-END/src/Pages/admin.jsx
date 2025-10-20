@@ -16,13 +16,17 @@ const Admin = () => {
   // use centralized apiBase from utils
 
   useEffect(() => {
-    fetch(`${apiBase}/admin/health`)
-      .then(async (res) => {
+    const check = async () => {
+      try {
+        const res = await apiFetch('/admin/health')
         if (!res.ok) throw new Error('Failed')
         const data = await res.json()
         setStatus(`OK • ${new Date(data.timestamp).toLocaleString()}`)
-      })
-      .catch(() => setStatus('Cannot reach backend'))
+      } catch (_e) {
+        setStatus('Cannot reach backend')
+      }
+    }
+    check()
   }, [])
 
   useEffect(() => {
@@ -33,9 +37,9 @@ const Admin = () => {
     try {
       setLoading(true)
       setError('')
-      const res = await fetch(`${apiBase}/admin/products`)
-      if (!res.ok) throw new Error('Failed to load products')
-      const data = await res.json()
+  const res = await apiFetch('/admin/products')
+  if (!res.ok) throw new Error('Failed to load products')
+  const data = await res.json()
       setProducts(data)
     } catch (e) {
       setError('Failed to load products')
@@ -85,7 +89,7 @@ const Admin = () => {
       }
       const endpoint = editingId ? `${apiBase}/admin/products/${editingId}` : `${apiBase}/admin/products`
       const method = editingId ? 'PUT' : 'POST'
-      const res = await fetch(endpoint, {
+      const res = await apiFetch(endpoint.replace(apiBase, ''), {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -127,7 +131,7 @@ const Admin = () => {
     try {
       setSaving(true)
       setError('')
-      const res = await fetch(`${apiBase}/admin/products/${id}`, { method: 'DELETE' })
+  const res = await apiFetch(`/admin/products/${id}`, { method: 'DELETE' })
       if (!res.ok) throw new Error('Delete failed')
       await loadProducts()
       window.dispatchEvent(new CustomEvent('products:changed'))
