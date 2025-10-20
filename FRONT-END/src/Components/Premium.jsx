@@ -1,5 +1,6 @@
 import React from 'react';
-              import waveVideo from '../assets/videos.mp4';
+import waveVideo from '../assets/videos.mp4';
+import goldenLives3 from '../assets/golden-lives3.png';
 const Premium = () => {
   return (
     <>
@@ -23,7 +24,7 @@ const Premium = () => {
             {/* Text content */}
             <div className="contain">
               <div className="lives">
-                <img src="../assets/golden-lives3.png" alt="" />
+                <img src={goldenLives3} alt="" />
               </div>
               <div className="contain-dtl">
                 <h3>Glitzmia Cream</h3>

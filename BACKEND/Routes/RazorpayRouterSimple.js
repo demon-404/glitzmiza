@@ -4,6 +4,15 @@ const Product = require('../Model/Product');
 
 const razorpayRouter = express.Router();
 
+// Health endpoint for Razorpay routes
+razorpayRouter.get('/api/razorpay/health', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Razorpay simple router OK',
+    timestamp: new Date()
+  });
+});
+
 // Generate unique order ID
 const generateOrderId = () => {
   return 'GLITZ_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);

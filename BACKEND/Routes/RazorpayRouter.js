@@ -6,6 +6,15 @@ const Product = require('../Model/Product');
 
 const razorpayRouter = express.Router();
 
+// Health endpoint for Razorpay routes
+razorpayRouter.get('/api/razorpay/health', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Razorpay router OK',
+    timestamp: new Date()
+  });
+});
+
 // Initialize Razorpay with fallback values for development
 let razorpay;
 try {

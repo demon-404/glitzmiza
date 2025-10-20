@@ -18,6 +18,17 @@ adminRouter.get('/admin/products', async (req, res) => {
     }
 })
 
+// Backwards-compatible alias endpoints without /admin prefix
+adminRouter.get('/products', async (req, res) => {
+    // Delegate to the same logic as /admin/products
+    try {
+        const products = await Product.find().sort({ createdAt: -1 })
+        res.json(products)
+    } catch (e) {
+        res.status(500).json({ message: 'Failed to fetch products' })
+    }
+})
+
 adminRouter.post('/admin/products', async (req, res) => {
     try {
         const { name, price, discountPrice, imageUrl, imageBase64, imageContentType, description, stock } = req.body
@@ -85,6 +96,21 @@ adminRouter.delete('/admin/products/:id', async (req, res) => {
 
 // serve image for a product
 adminRouter.get('/admin/products/:id/image', async (req, res) => {
+    try {
+        const { id } = req.params
+        const product = await Product.findById(id)
+        if (!product || !product.image || !product.image.data) {
+            return res.status(404).json({ message: 'Image not found' })
+        }
+        res.set('Content-Type', product.image.contentType || 'application/octet-stream')
+        res.send(product.image.data)
+    } catch (e) {
+        res.status(400).json({ message: 'Failed to fetch image' })
+    }
+})
+
+// Alias for image endpoint without /admin prefix
+adminRouter.get('/products/:id/image', async (req, res) => {
     try {
         const { id } = req.params
         const product = await Product.findById(id)
