@@ -13,6 +13,7 @@ import Footer from "../Components/Footer";
 import Subscribe from "../Components/Subscribe";
 import Offer from "../Components/Offer";
 import apiBase from '../utils/apiBase'
+import logo from '../assets/logo.png'
 
 const Singleproduct = () => {
   const { id } = useParams()
@@ -169,8 +170,9 @@ const Singleproduct = () => {
   return (
     <>
       {/* Optional loader element (hidden by default) */}
-      <div id="site-loader" className="site-loader hide">
-        <div className="spinner"></div>
+      <div id="site-loader" className="loader-overlay hide">
+        <img src={logo} alt="Logo" className="loader-logo" />
+        <div className="loader-spinner"></div>
       </div>
 
       <Navbarsimple />
